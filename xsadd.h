@@ -1,5 +1,5 @@
-#ifndef XSADD_SMALL_H
-#define XSADD_SMALL_H
+#ifndef XSADD_H
+#define XSADD_H
 /**
  * @file xsadd.h
  *
@@ -31,9 +31,9 @@ extern "C" {
 
     static inline uint32_t xsadd_uint32(xsadd_t * xsadd)
     {
-#define sh1 15
-#define sh2 18
-#define sh3 11
+        static const int sh1 = 15;
+        static const int sh2 = 18;
+        static const int sh3 = 11;
         uint32_t t;
         t = xsadd->state[0];
         t ^= t << sh1;
@@ -44,13 +44,10 @@ extern "C" {
         xsadd->state[2] = xsadd->state[3];
         xsadd->state[3] = t;
         return xsadd->state[3] + xsadd->state[2];
-#undef sh1
-#undef sh2
-#undef sh3
     }
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // XSADD_SMALL_H
+#endif // XSADD_H

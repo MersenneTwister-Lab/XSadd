@@ -13,7 +13,7 @@
  * The 3-clause BSD License is applied to this software, see
  * LICENSE.txt
  */
-#include "xsadd_small.h"
+#include "xsadd.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <inttypes.h>

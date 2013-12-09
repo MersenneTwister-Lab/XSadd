@@ -1,4 +1,4 @@
-#include "xsadd_small.h"
+#include "xsadd.h"
 #define LOOP 8
 
 static void period_certification(xsadd_t * xsadd)

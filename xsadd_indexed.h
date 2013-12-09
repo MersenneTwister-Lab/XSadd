@@ -37,10 +37,17 @@ extern "C" {
 
     static inline uint32_t xsadd_uint32(xsadd_t * xsadd)
     {
+#if defined(USE_MACRO_SHIFT)
 #define MASK 3
 #define sh1 15
 #define sh2 18
 #define sh3 11
+#else
+        static const int MASK = 3;
+        static const int sh1 = 15;
+        static const int sh2 = 18;
+        static const int sh3 = 11;
+#endif
         uint32_t t;
         xsadd->index = (xsadd->index + 1) & MASK;
         t = xsadd->state[xsadd->index];
@@ -50,10 +57,12 @@ extern "C" {
         xsadd->state[xsadd->index & MASK] = t;
         return xsadd->state[xsadd->index & MASK]
             + xsadd->state[(xsadd->index + 3) & MASK];
+#if defined(USE_MACRO_SHIFT)
 #undef MASK
 #undef sh1
 #undef sh2
 #undef sh3
+#endif
     }
 
 #ifdef __cplusplus
