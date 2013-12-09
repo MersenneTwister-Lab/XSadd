@@ -1,9 +1,14 @@
-#ifndef XSADD_H
-#define XSADD_H
+#ifndef XSADD_INDEXED_H
+#define XSADD_INDEXED_H
 /**
- * @file xsadd.h
+ * @file xsadd_indexed.h
  *
- * @brief XORSHIFT-ADD 128-bit internal state
+ * @brief XORSHIFT-ADD 32-bit pseudo random number generator with
+ * 128-bit internal state.
+ *
+ * This program is made for speed comparison.
+ * Using state array and index seems to inferor to using state array
+ * and copying.
  *
  * @author Mutsuo Saito (Hiroshima University)
  * @author Makoto Matsumoto (Hiroshima University)
@@ -55,4 +60,4 @@ extern "C" {
 }
 #endif
 
-#endif // XSADD_H
+#endif // XSADD_INDEXED_H

@@ -1,5 +1,5 @@
 /**
- * @file test_xsadd.c
+ * @file test_xsadd_indexed.c
  *
  * @brief XORSHIFT-ADD 128-bit internal state
  *
@@ -13,7 +13,7 @@
  * The 3-clause BSD License is applied to this software, see
  * LICENSE.txt
  */
-#include "xsadd.h"
+#include "xsadd_indexed.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <inttypes.h>

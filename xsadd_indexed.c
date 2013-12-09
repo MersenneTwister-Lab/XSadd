@@ -1,4 +1,24 @@
-#include "xsadd.h"
+/**
+ * @file xsadd_indexed.c
+ *
+ * @brief XORSHIFT-ADD 32-bit pseudo random number generator with
+ * 128-bit internal state.
+ *
+ * This program is made for speed comparison.
+ * Using state array and index seems to inferor to using state array
+ * and copying.
+ *
+ * @author Mutsuo Saito (Hiroshima University)
+ * @author Makoto Matsumoto (Hiroshima University)
+ *
+ * Copyright (C) 2013 Mutsuo Saito, Makoto Matsumoto and
+ * Hiroshima University
+ * All rights reserved.
+ *
+ * The 3-clause BSD License is applied to this software, see
+ * LICENSE.txt
+ */
+#include "xsadd_indexed.h"
 #define LOOP 8
 
 static void period_certification(xsadd_t * xsadd)
