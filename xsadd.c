@@ -3,11 +3,13 @@
  *
  * @brief XORSHIFT-ADD: 128-bit internal state pseudorandom number generator.
  *
- * @author Mutsuo Saito
+ * @author Mutsuo Saito (Manieth Corp.)
+ * @author Makoto Matsumoto (Hiroshima University)
  *
  * Copyright (c) 2014
- * Mutsuo Saito
- * All rights reserved
+ * Mutsuo Saito, Makoto Matsumoto, Manieth Corp.,
+ * and Hiroshima University.
+ * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -40,11 +42,13 @@
 #define POLYNOMIAL_ARRAY_SIZE 8
 #define UZ_ARRAY_SIZE 8
 
-/** this is hexadecimal string */
+/*
+ * this is hexadecimal string
+ */
 static const char * const characteristic_polynomial
 = "100000000008101840085118000000001";
 
-/** 3^41 > 2^64 and 3^41 < 2^65 */
+/* 3^41 > 2^64 and 3^41 < 2^65 */
 const char * const xsadd_jump_base_step = "1FA2A1CF67B5FB863";
 
 /**
@@ -106,19 +110,14 @@ void xsadd_init(xsadd_t * xsadd, uint32_t seed)
     }
     period_certification(xsadd);
     for (int i = 0; i < LOOP; i++) {
-        xsadd_uint32(xsadd);
+        xsadd_next_state(xsadd);
     }
 }
 
-/**
- * This function initializes the internal state array,
- * with an array of 32-bit unsigned integers used as seeds
- * @param random xsadd state vector.
- * @param init_key the array of 32-bit integers, used as a seed.
- * @param key_length the length of init_key.
- */
-void xsadd_init_by_array(xsadd_t * random, uint32_t init_key[],
-			 int key_length) {
+void xsadd_init_by_array(xsadd_t * random,
+			 const uint32_t init_key[],
+			 int key_length)
+{
     const int lag = 1;
     const int mid = 1;
     const int size = 4;
@@ -175,7 +174,7 @@ void xsadd_init_by_array(xsadd_t * random, uint32_t init_key[],
     }
     period_certification(random);
     for (i = 0; i < LOOP; i++) {
-	xsadd_uint32(random);
+	xsadd_next_state(random);
     }
 }
 
@@ -185,7 +184,6 @@ void xsadd_init_by_array(xsadd_t * random, uint32_t init_key[],
  * this function.
  * @param mul_step jump step is mul_step * base_step.
  * @param base_step hexadecimal number string less than 2<sup>128</sup>.
- * @param poly_str string of the characteristic polynomial.
  * xsadddc
  */
 void xsadd_jump(xsadd_t *xsadd,
@@ -203,7 +201,7 @@ void xsadd_jump(xsadd_t *xsadd,
  * This function can use multiple time for the xsadd structure.
  * @param xsadd xsadd structure, overwritten by new state after calling
  * this function.
- * @param jump_poly the jump polynomial calculated by
+ * @param jump_str the jump polynomial calculated by
  * xsadd_calculate_jump_polynomial.
  */
 void xsadd_jump_by_polynomial(xsadd_t *xsadd, const char * jump_str)
@@ -222,7 +220,7 @@ void xsadd_jump_by_polynomial(xsadd_t *xsadd, const char * jump_str)
 	    if ((jump_poly.ar[i] & mask) != 0) {
 		xsadd_add(work, xsadd);
 	    }
-	    xsadd_uint32(xsadd);
+	    xsadd_next_state(xsadd);
 	}
     }
     *xsadd = *work;
@@ -320,9 +318,10 @@ inline static void shiftup1(f2_polynomial *dest)
 }
 
 /**
- * shift up 1 bit, if　indeterminate of dest is <b>t</b>
- * dest = dest * <b>t</b>
+ * shift up n bit, if　indeterminate of dest is <b>t</b>
+ * dest = dest * <b>t<sup>n</sup></b>
  * @param dest 256-bit polynomial
+ * @param n shift value
  */
 inline static void shiftup0n(f2_polynomial *dest, int n)
 {
@@ -336,7 +335,7 @@ inline static void shiftup0n(f2_polynomial *dest, int n)
 
 /**
  * shift down 1 bit, if　indeterminate of dest is <b>t</b>
- * dest = dest / <b>t</b>
+ * dest = dest / <b>t</b> and constant is truncated.
  * @param dest 256-bit polynomial
  */
 inline static void shiftdown1(f2_polynomial *dest)
@@ -587,9 +586,8 @@ static void polynomialtostr(char * str, f2_polynomial * poly)
  * dest = x<sup>power</sup> % mod
  * @param dest the result of calculation
  * @param x polynomial
- * @param lower_power lower 128 bit of power
- * @param upper_power upper 128 bit of power
- * @param mod divisor polynomial
+ * @param power exponential part
+ * @param mod_poly divisor polynomial
  */
 static void polynomial_power_mod(f2_polynomial * dest,
 				 const f2_polynomial * x,

@@ -6,10 +6,13 @@ CC = gcc
 #CC = icc
 #CC = clang
 
-all: test_xsadd
+all: test_xsadd doc
 
 test_xsadd:  test_xsadd.c xsadd.o
 	${CC} ${CCOPTION} -o $@  test_xsadd.c xsadd.o
+
+doc:xsadd.h doxygen.cfg
+	doxygen doxygen.cfg
 
 xsadd.c: xsadd.h
 

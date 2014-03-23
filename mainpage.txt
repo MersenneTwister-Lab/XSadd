@@ -1,0 +1,56 @@
+/**
+ * \mainpage
+ *
+ * This is XORSHIFT-ADD pseudorandom number generator(xsadd).
+ *
+ * This Project provides pseudorandom number generators of the
+ * Period 2<sup>128</sup>-1.
+ *
+ * - XORSHIFT-ADD is based on XORSHIFT developed by George Marsaglia.
+ * - The state transition function of XORSHIFT-ADD is little bit simpler
+ * than XORSHIFT.
+ * - XORSHIFT-ADD has non F2-linear output function, which is additon of
+ * unsigned integer modulo 2<sup>32</sup>.
+ * - The output function lets XORSHIT-ADD to pass the BigCrush test of
+ * TestU01 test suite.
+ * - xsadd.c contains jump functions.
+ *
+ * The following C files are intended to work with C programs written
+ * by users.
+ * - xsadd.c 32-bit pseudo random number generator's program.
+ * - xsadd.h a header file of 32-bit pseudo random number generators.
+ *
+ * Two executable files and documents are made by typing \b make \b all.
+ * - test_xsadd a simple check program for xsadd
+ * - The document html files you are looking at.
+ *
+ * @author Mutsuo Saito, (saito@manieth.com) Manieth Corp.
+ * @author Makoto Matsumoto, Hiroshima University
+ *
+ * @date 2014-2-15
+ *
+ * Copyright (c) 2014
+ * Mutsuo Saito, Makoto Matsumoto, Manieth Corp.,
+ * and Hiroshima University.
+ * All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use, copy,
+ * modify, merge, publish, distribute, sublicense, and/or sell copies
+ * of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */

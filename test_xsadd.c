@@ -3,7 +3,7 @@
  *
  * @brief XORSHIFT-ADD 128-bit internal state
  *
- * @author Mutsuo Saito (Hiroshima University)
+ * @author Mutsuo Saito (Manieth Corp.)
  * @author Makoto Matsumoto (Hiroshima University)
  *
  * Copyright (C) 2013 Mutsuo Saito, Makoto Matsumoto and
@@ -47,9 +47,24 @@ void print_output()
     xsadd_t xsa;
     xsadd_init(&xsa, 1234);
     printf("xsadd_init(&xsa, 1234);\n");
+    printf("xsadd_uint32\n");
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 4; j++) {
             printf("%10u ", xsadd_uint32(&xsa));
+        }
+        printf ("\n");
+    }
+    printf("xsadd_float\n");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%.8f ", xsadd_float(&xsa));
+        }
+        printf ("\n");
+    }
+    printf("xsadd_floatOC\n");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%.8f ", xsadd_floatOC(&xsa));
         }
         printf ("\n");
     }
@@ -57,9 +72,17 @@ void print_output()
     xsadd_init_by_array(&xsa, seed, 4);
     printf("\nuint32_t seed[4] = {0x0a, 0x0b, 0x0c, 0x0d};\n");
     printf("xsadd_init_by_array(&xsa, seed, 4);\n");
+    printf("xsadd_uint32\n");
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 4; j++) {
             printf("%08" PRIx32 " ", xsadd_uint32(&xsa));
+        }
+        printf ("\n");
+    }
+    printf("xsadd_double\n");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%.15f ", xsadd_double(&xsa));
         }
         printf ("\n");
     }
