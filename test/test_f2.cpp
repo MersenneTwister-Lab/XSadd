@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <sstream>
 #include <UnitTest++.h>
-#include <tr1/random>
+#include <random>
 
 using namespace NTL;
 using namespace std;
@@ -428,7 +428,7 @@ SUITE(JUMPPOL)
     TEST(CALCULATE)
     {
 	/* xsadd_calculate_jump_polynomial */
-	tr1::mt19937 mt(1);
+	mt19937 mt(1);
 	ZZ step;
 	ZZ step3;
 	uint32_t mul_step;

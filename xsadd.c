@@ -266,9 +266,9 @@ static void xsadd_add(xsadd_t *dest, const xsadd_t *src)
 static void period_certification(xsadd_t * xsadd)
 {
     if (xsadd->state[0] == 0 &&
-        xsadd->state[0] == 0 &&
-        xsadd->state[0] == 0 &&
-        xsadd->state[0] == 0) {
+        xsadd->state[1] == 0 &&
+        xsadd->state[2] == 0 &&
+        xsadd->state[3] == 0) {
         xsadd->state[0] = 'X';
         xsadd->state[1] = 'S';
         xsadd->state[2] = 'A';

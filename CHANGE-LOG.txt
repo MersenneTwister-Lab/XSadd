@@ -1,2 +1,5 @@
+ver 1.1
+Bug fix of period_certification
+-------
 ver 1.0
 First version.

@@ -34,6 +34,7 @@ env.Append(CPPPATH=include_path + include_option)
 common_files = ['main.cpp']
 test1_files = ['test_f2.cpp']
 test2_files = ['test_jump.cpp']
+test3_files = ['test_period.cpp']
 #
 # Library check
 #
@@ -63,6 +64,10 @@ if unit_test_path:
                         test2_files + env.Object(common_files),
                         LIBS=optlib)
     Command("test2.passed", test2, localSconsLib.runUnitTest)
+    test3 = env.Program('test3',
+                        test3_files + env.Object(common_files),
+                        LIBS=optlib)
+    Command("test3.passed", test2, localSconsLib.runUnitTest)
     debug1 = env.Program('debug1',
                         ['debug_xsadd_jump.cpp'],
                         LIBS=optlib)
