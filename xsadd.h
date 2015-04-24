@@ -101,7 +101,7 @@ extern "C" {
 
     /**
      * This function outputs floating point number from internal state.
-     * This function is implemented using multiplying by 1 / 2^32.
+     * This function is implemented using multiplying by 1 / 2^23.
      * floating point multiplication is faster than using union trick in
      * my Intel CPU.
      * @param xsadd xsadd internal state
