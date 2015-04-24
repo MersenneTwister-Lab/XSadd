@@ -1,3 +1,6 @@
+ver 1.2
+Bug fix of floating point number conversion
+-------
 ver 1.1
 Bug fix of period_certification
 -------
